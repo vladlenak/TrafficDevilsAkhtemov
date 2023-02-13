@@ -1,8 +1,11 @@
-package octopus.inc.trafficdevilsakhtemov
+package octopus.inc.trafficdevilsakhtemov.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dagger.hilt.android.AndroidEntryPoint
+import octopus.inc.trafficdevilsakhtemov.R
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

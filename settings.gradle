@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "Traffic Devils Akhtemov"
 include ':app'
 include ':domain'
+include ':data'

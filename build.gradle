@@ -1,3 +1,14 @@
+buildscript {
+    ext.hiltVersion = '2.44'
+    ext.navigationVersion = '2.5.3'
+    ext.retrofitVersion = '2.9.0'
+    ext.okHttpVersion = '4.9.0'
+
+    dependencies {
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.44"
+    }
+}
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id 'com.android.application' version '7.4.1' apply false
