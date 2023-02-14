@@ -3,12 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dnsFragment">
+    app:startDestination="@id/ipApiFragment">
 
     <fragment
-        android:id="@+id/dnsFragment"
-        android:name="octopus.inc.trafficdevilsakhtemov.presentation.dns.DnsFragment"
-        tools:layout="@layout/fragment_dns">
+        android:id="@+id/ipApiFragment"
+        android:name="octopus.inc.trafficdevilsakhtemov.presentation.ipapi.IpApiFragment"
+        tools:layout="@layout/fragment_ip_api">
+
+        <action
+            android:id="@+id/action_ipApiFragment_to_searchEngineFragment"
+            app:destination="@id/searchEngineFragment">
+            <argument
+                android:name="country"
+                app:argType="string"
+                android:defaultValue="" />
+        </action>
     </fragment>
+
+    <fragment
+        android:id="@+id/searchEngineFragment"
+        android:name="octopus.inc.trafficdevilsakhtemov.presentation.searchengine.SearchEngineFragment"
+        tools:layout="@layout/fragment_search_engine"/>
 
 </navigation>

@@ -1,11 +1,13 @@
 package octopus.inc.trafficdevilsakhtemov.di
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import octopus.inc.data.api.DnsApi
-import octopus.inc.data.repository.DnsRepositoryImpl
+import octopus.inc.data.api.ApiService
+import octopus.inc.data.repository.IpApiRepositoryImpl
 import octopus.inc.data.utils.EndPoints
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -30,14 +32,19 @@ class DataModule {
         .build()
 
     @Provides
-    @Singleton
-    fun provideDnsApi(): DnsApi = Retrofit.Builder()
-        .baseUrl(provideBaseUrl())
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(provideOkHttpClient())
-        .build()
-        .create(DnsApi::class.java)
+    fun provideGson(): Gson = GsonBuilder()
+        .setLenient()
+        .create()
 
     @Provides
-    fun provideDnsRepositoryImpl() = DnsRepositoryImpl(provideDnsApi())
+    @Singleton
+    fun provideApiService(): ApiService = Retrofit.Builder()
+        .baseUrl(provideBaseUrl())
+        .addConverterFactory(GsonConverterFactory.create(provideGson()))
+        .client(provideOkHttpClient())
+        .build()
+        .create(ApiService::class.java)
+
+    @Provides
+    fun provideIpApiRepositoryImpl() = IpApiRepositoryImpl(provideApiService())
 }
